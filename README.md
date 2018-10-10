@@ -3,4 +3,4 @@
 
 ### Referensi
 
-* [Endy Muhardin]{https://github.com/idtazkia/registrasi-mahasiswa}
+* [Endy Muhardin](https://github.com/idtazkia/registrasi-mahasiswa)
