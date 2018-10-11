@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.mkopylec.recaptcha.validation.RecaptchaValidator;
 import com.github.mkopylec.recaptcha.validation.ValidationResult;
@@ -30,12 +31,16 @@ public class RegistrasiController {
 
 	@PostMapping("/registrasi")
 	public String prosesRegistrasi(@ModelAttribute @Valid Registrasi reg, BindingResult errors, SessionStatus status,
-			HttpServletRequest request) {
-		
+			HttpServletRequest request) throws JsonProcessingException {
+
 		ValidationResult hasil = recaptchaValidator.validate(request);
-		if(!hasil.isSuccess()) {
-			LOGGER.warn("Cap");
+		if (!hasil.isSuccess()) {
+			LOGGER.warn("Captcha Validation Failed : {}" + hasil.getErrorCodes());
+			return "errors";
 		}
+
+		LOGGER.debug("Data Registrasi : {}", objectMapper.writeValueAsString(reg));
+		return "hasil";
 
 	}
 }
