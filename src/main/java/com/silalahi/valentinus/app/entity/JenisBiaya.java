@@ -1,0 +1,23 @@
+package com.silalahi.valentinus.app.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import lombok.Data;
+
+@Entity
+@Data
+public class JenisBiaya {
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	private String id;
+
+	@Column(nullable = false)
+	private String nama;
+
+}
