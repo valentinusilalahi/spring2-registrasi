@@ -11,6 +11,20 @@ CREATE TABLE sekolah (
   UNIQUE (nspn)
 );
 
+CREATE TABLE provinsi(
+	id VARCHAR (36),
+	nama VARCHAR(255),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE kabupate_kota(
+	id VARCHAR(36),
+	nama VARCHAR(255),
+	id_provinsi VARCHAR(36),
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_provinsi) REFERENCES provinsi(id)
+);
+
 CREATE TABLE registrasi_awal (
   id                      VARCHAR (36),
   nama                    VARCHAR (255) NOT NULL,
